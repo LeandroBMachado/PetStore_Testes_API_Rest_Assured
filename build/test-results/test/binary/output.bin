@@ -1,0 +1,30 @@
+Request method:	POST
++Request URI:	https://petstore.swagger.io/
+Proxy:			<none>
+Request params:	<none>
+Query params:	<none>
+Form params:	<none>
+Path params:	<none>
+Headers:		Accept=*/*
+6				Content-Type=applicaton/json; charset=ISO-8859-1
+Cookies:		<none>
+Multiparts:		<none>
+Body:
+{
+  "id": 0,
+  "category": {
+    "id": 1,
+    "name": "dog"
+  },
+  "name": "Snoopy",
+  "photoUrls": [
+    "string"
+  ],
+  "tags": [
+    {
+      "id": 2021,
+      "name": "sta"
+    }
+  ],
+  "status": "available"
+}

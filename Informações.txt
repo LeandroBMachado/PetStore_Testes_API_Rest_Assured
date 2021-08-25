@@ -1,0 +1,29 @@
+TESTES DE API POSSUI MAVEN E O GRADLE e TestNG
+
+
+
+GRADLE
+
+// https://mvnrepository.com/artifact/org.testng/testng
+testImplementation group: 'org.testng', name: 'testng', version: '7.1.0'
+
+
+REST ASSURED
+
+// https://mvnrepository.com/artifact/io.rest-assured/rest-assured
+testImplementation group: 'io.rest-assured', name: 'rest-assured', version: '4.3.3'
+
+
+SWAGGER É UM TIPO DE DOCUMENTACAO VIVA SOBRE UMA API
+
+https://petstore.swagger.io/
+
+NELE POSSUI VARIOS MODULOS PARA TESTES DE API
+
+EM API A GENTE MANDA UMA REQUISICAO DE REQUEST E RECEBE UMA RESPOSTA
+
+2:12:00
+
+
+
+

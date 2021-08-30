@@ -11,12 +11,14 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.contains;
 
 //Classe
 public class Pet {
 
     //Atributos
-    String uri = "https://petstore.swagger.io/v2/pet"; //endereço pet
+    String uri = "https://petstore.swagger.io/v2/pet"; //endereço entidade pet
 
     //Métodos e funções
     public String lerJason(String caminhoJson) throws IOException {
@@ -35,7 +37,7 @@ public class Pet {
         //Dado Quando Então
 
         given() //Dado
-                .contentType("applicaton/json") //comum em API rest  -antigos text/xml
+                .contentType("application/json") //comum em API rest  -antigos text/xml
                 .log().all()
                 .body(jsonBody)
         .when() //Quando
@@ -43,6 +45,11 @@ public class Pet {
         .then()//Então
                 .log().all()
                 .statusCode(200)
+                .body("name",is("Skin")) // validar nome cachorro
+                .body("status",is("available")) //validar status
+                .body("category.name",is("dog"))
+                .body("tags.name",contains("sta"))
+
 
         ;
     }

@@ -2,6 +2,7 @@
 package petstore;
 //Bibliotecas
 
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import java.io.File;
@@ -18,23 +19,25 @@ import static org.hamcrest.Matchers.contains;
 public class Pet {
 
     //Atributos
-    String uri = "https://petstore.swagger.io/v2/pet"; //endere√ßo entidade pet
+    String uri = "https://petstore.swagger.io/v2/pet"; //endereÁo entidade pet
 
-    //M√©todos e fun√ß√µes
+    //MÈtodos e funÁıes
     public String lerJason(String caminhoJson) throws IOException {
 
         return new String(Files.readAllBytes(Paths.get(caminhoJson)));
     }
 
     //Incluir create-post
-    @Test //Identifica o metodo ou fun√ß√£o para o testNG
+    @Test(priority = 1) //Identifica o metodo ou funÁ„o para o testNG
     public void incluirPet() throws IOException {
         String jsonBody = lerJason("db/pet1.json");
 
 
         //Sintaxe Ghenkin
 
-        //Dado Quando Ent√£o
+        //Dado Quando Ent„o
+
+
 
         given() //Dado
                 .contentType("application/json") //comum em API rest  -antigos text/xml
@@ -42,16 +45,39 @@ public class Pet {
                 .body(jsonBody)
         .when() //Quando
                 .post(uri)
-        .then()//Ent√£o
+        .then()//Ent„o
                 .log().all()
                 .statusCode(200)
                 .body("name",is("Skin")) // validar nome cachorro
                 .body("status",is("available")) //validar status
-                .body("category.name",is("dog"))
-                .body("tags.name",contains("sta"))
-
+                .body("category.name",is("LBM245678"))
+                .body("tags.name",contains("data"))
 
         ;
+
+    }
+    @Test(priority = 2)
+    public void consultarPet(){
+        String petid = "19881231";
+
+        String token =
+        given()
+                .contentType("application/json")
+                .log().all()
+        .when()
+            .get(uri + "/" + petid)
+        .then()
+            .log().all()
+            .statusCode(200)
+            .body("name",is("Skin"))
+            .body("category.name",is("LBM245678"))
+            .body("status",is("available"))
+        .extract()
+                .path("category.name")
+         ;
+
+        System.out.println("O token È:" + token);
+
     }
 
 }
